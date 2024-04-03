@@ -1,9 +1,13 @@
-import { Elysia } from "elysia";
+import { Elysia, t } from "elysia";
 
 const app = new Elysia()
   .get("/", () => "Hello Elysia")
   .get("/:id", ({ params: { id } }) => id)
-  // .post("/", ())
+  .post("/", () => "Hello World!", {
+    body: t.Object({
+      name: t.String(),
+    }),
+  })
   .listen(3000);
 
 console.log(
